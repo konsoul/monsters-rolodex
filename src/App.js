@@ -6,7 +6,8 @@ class App extends Component {
     super();
 
     this.state = {
-      monsters: []
+      monsters: [],
+      searchField: ''
     };
   }
 
@@ -27,6 +28,11 @@ class App extends Component {
   }
 
   render() {
+    // Create a new array of filtered monsteres based on user input
+    const filteredMonsters = this.state.monsters.filter(monster => {
+      return monster.name.toLocaleLowerCase().includes(this.state.searchField);
+    });
+
     return (
       <div className='App'>
         <input
@@ -34,16 +40,16 @@ class App extends Component {
           type='search'
           placeholder='Search Monsters'
           onChange={e => {
-            console.log({ startingArray: this.state.monsters });
-            const filteredMonsters = this.state.monsters.filter(monster => {
-              return monster.name.toLocaleLowerCase().includes(e.target.value.toLocaleLowerCase());
-            });
+            // put the user input value in a variable
+            const searchField = e.target.value.toLocaleLowerCase();
+            // set the state of this
             this.setState(() => {
-              return { monsters: filteredMonsters };
+              return { searchField };
             });
           }}
         />
-        {this.state.monsters.map(monster => {
+        {/* map through our filtered monsters array instead of our  */}
+        {filteredMonsters.map(monster => {
           return (
             <div key={monster.id}>
               <h1>{monster.name}</h1>
