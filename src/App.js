@@ -27,10 +27,19 @@ class App extends Component {
       );
   }
 
+  onSearchChange = e => {
+    const searchField = e.target.value.toLocaleLowerCase();
+    this.setState(() => {
+      return { searchField };
+    });
+  };
+
   render() {
-    // Create a new array of filtered monsteres based on user input
-    const filteredMonsters = this.state.monsters.filter(monster => {
-      return monster.name.toLocaleLowerCase().includes(this.state.searchField);
+    const { monsters, searchField } = this.state;
+    const { onSearchChange } = this;
+
+    const filteredMonsters = monsters.filter(monster => {
+      return monster.name.toLocaleLowerCase().includes(searchField);
     });
 
     return (
@@ -39,16 +48,9 @@ class App extends Component {
           className='search-box'
           type='search'
           placeholder='Search Monsters'
-          onChange={e => {
-            // put the user input value in a variable
-            const searchField = e.target.value.toLocaleLowerCase();
-            // set the state of this
-            this.setState(() => {
-              return { searchField };
-            });
-          }}
+          onChange={onSearchChange}
         />
-        {/* map through our filtered monsters array instead of our  */}
+
         {filteredMonsters.map(monster => {
           return (
             <div key={monster.id}>
