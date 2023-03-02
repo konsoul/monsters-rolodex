@@ -9,8 +9,9 @@
 .card-container {
   display: flex;
   flex-direction: column;
-  background-color: #6162b6;
-  border: 1px solid rgb(238, 110, 153);
+  background-color: #585858;
+  border: 1px solid rgb(190, 190, 190);
+  color: antiquewhite;
   border-radius: 5px;
   padding: 25px;
   cursor: pointer;
