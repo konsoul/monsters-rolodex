@@ -12,6 +12,7 @@ body {
 .app-title {
   margin-top: 75px;
   margin-bottom: 50px;
-  font-size: 76px;
+  font-size: 8rem;
   color: #858585;
+  font-family: 'Bigelow Rules';
 }
